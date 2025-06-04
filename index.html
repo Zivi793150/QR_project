@@ -6,7 +6,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
-  <title>QR Code Generator</title>
+  <title>QR code component</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -51,118 +51,56 @@
     }
 
     body {
-      background-color: var(--color-background);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      min-block-size: 100vh;
+      background-color: hsl(212, 45%, 89%);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: var(--spacing-md);
     }
 
     .container {
-      width: 100%;
-      max-width: min(90%, 400px);
+      background-color: hsl(212, 45%, 89%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .qr-card {
-      background-color: var(--color-white);
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius-lg);
-      box-shadow: var(--shadow-lg);
+    .qr-code {
+      background-color: hsl(0, 0%, 100%);
+      padding: 16px;
+      border-radius: 16px;
+      width: 300px;
+      text-align: center;
     }
 
     .text-content {
-      margin-block-end: var(--spacing-lg);
+      margin-top: 20px;
     }
 
     .text-content h1 {
-      color: var(--color-text);
-      font-size: var(--font-size-large);
-      font-weight: 600;
-      margin-block-end: var(--spacing-sm);
       text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: hsl(218, 44%, 22%);
+      margin: 0;
+      margin-bottom: 15px;
     }
 
     .text-content p {
-      color: var(--color-text-light);
-      font-size: var(--font-size-base);
-      line-height: 1.5;
       text-align: center;
+      font-size: 15px;
+      font-weight: 400;
+      color: hsl(220, 15%, 55%);
+      margin: 0;
+      padding: 0 10px;
     }
 
-    .input-group {
-      margin-block-end: var(--spacing-lg);
-    }
-
-    .input-group input {
+    .img {
       width: 100%;
-      padding: var(--spacing-md);
-      border: 2px solid var(--color-border);
-      border-radius: var(--border-radius-md);
-      font-size: var(--font-size-base);
-      background-color: var(--color-input-bg);
-    }
-
-    .input-group input:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      background-color: var(--color-white);
-      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-    }
-
-    .button-group {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-block-end: var(--spacing-lg);
-    }
-
-    .button {
-      flex: 1;
-      padding: var(--spacing-md);
-      border: none;
-      border-radius: var(--border-radius-md);
-      font-size: var(--font-size-base);
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .button--primary {
-      background-color: var(--color-primary);
-      color: var(--color-white);
-    }
-
-    .button--secondary {
-      background-color: var(--color-input-bg);
-      color: var(--color-primary);
-      border: 2px solid var(--color-primary);
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .button--primary:hover {
-      background-color: var(--color-primary-dark);
-    }
-
-    .button--secondary:hover {
-      background-color: var(--color-white);
-    }
-
-    .qr-container {
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      padding: var(--spacing-md);
-      background-color: var(--color-input-bg);
-      border-radius: var(--border-radius-md);
-    }
-
-    .qr-container canvas {
-      border-radius: var(--border-radius-sm);
-      box-shadow: var(--shadow-sm);
+      height: auto;
+      border-radius: 16px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -175,7 +113,7 @@
     }
 
     @media (max-width: 480px) {
-      .qr-card {
+      .qr-code {
         padding: var(--spacing-md);
       }
     }
@@ -183,19 +121,12 @@
 </head>
 <body>
   <div class="container">
-    <div class="qr-card">
+    <div class="qr-code">
+      <img src="images/image-qr-code.png" alt="QR code" class="img">
       <div class="text-content">
-        <h1>QR Code Generator</h1>
-        <p>Создайте QR-код для любого текста или ссылки</p>
+        <h1>Improve your front-end skills by building projects</h1>
+        <p>Scan the QR code to visit Frontend Mentor and take your coding skills to the next level</p>
       </div>
-      <div class="input-group">
-        <input type="text" id="qr-text" placeholder="Введите текст или URL" aria-label="Текст для QR-кода">
-      </div>
-      <div class="button-group">
-        <button type="button" class="button button--primary" onclick="generateQR()">Сгенерировать</button>
-        <button type="button" class="button button--secondary" onclick="downloadQR()">Скачать</button>
-      </div>
-      <div class="qr-container" id="qr-code" role="img" aria-label="Сгенерированный QR-код"></div>
     </div>
   </div>
   <script src="script.js"></script>
