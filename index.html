@@ -6,28 +6,33 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
-  <title>QR code component</title>
+  <title>QR Code Generator</title>
 
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
     .body{
       background-color: hsl(212, 45%, 89%);
+      margin: 0;
+      min-height: 100vh;
     }
     .container {
       background-color: hsl(212, 45%, 89%);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
     }
     .qr-code {
       background-color: hsl(0, 0%, 100%);
-      padding: 16px;
+      padding: 20px;
       border-radius: 16px;
       width: 300px;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     .text-content {
       margin-top: 20px;
@@ -49,24 +54,62 @@
       color: hsl(220, 15%, 55%);
       margin: 0;
       padding: 0 10px;
+      margin-bottom: 20px;
     }
-    .img {
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group input {
       width: 100%;
-      height: auto;
-      border-radius: 16px;
+      padding: 10px;
+      border: 1px solid hsl(220, 15%, 55%);
+      border-radius: 8px;
+      font-size: 15px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: hsl(218, 44%, 22%);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: hsl(218, 44%, 30%);
+    }
+    #qr-code {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
     }
   </style>
 </head>
 <body class="body">
   <div class="container">
     <div class="qr-code">
-      <img src="images/image-qr-code.png" alt="QR code" class="img">
       <div class="text-content">
-        <h1>Improve your front-end skills by building projects</h1>
-        <p>Scan the QR code to visit Frontend Mentor and take your coding skills to the next level</p>
+        <h1>QR Code Generator</h1>
+        <p>Введите текст или URL для создания QR-кода</p>
       </div>
+      <div class="input-group">
+        <input type="text" id="qr-text" placeholder="Введите текст или URL">
+      </div>
+      <div class="button-group">
+        <button onclick="generateQR()">Сгенерировать</button>
+        <button onclick="downloadQR()">Скачать</button>
+      </div>
+      <div id="qr-code"></div>
     </div>
   </div>
- 
+  <script src="script.js"></script>
 </body>
 </html>
