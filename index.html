@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
@@ -11,6 +11,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <style>
+    :root {
+      /* Цвета */
+      --color-primary: #4a90e2;
+      --color-primary-dark: #357abd;
+      --color-text: #1a1a1a;
+      --color-text-light: #666;
+      --color-background: #f0f2f5;
+      --color-white: #ffffff;
+      --color-border: #e1e1e1;
+      --color-input-bg: #f8f9fa;
+
+      /* Размеры шрифтов */
+      --font-size-small: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+      --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+      --font-size-large: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+
+      /* Отступы */
+      --spacing-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
+      --spacing-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);
+      --spacing-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+      --spacing-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+
+      /* Скругления */
+      --border-radius-sm: 0.5rem;
+      --border-radius-md: 0.75rem;
+      --border-radius-lg: 1rem;
+
+      /* Тени */
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -18,166 +51,151 @@
     }
 
     body {
-      background-color: #f0f2f5;
+      background-color: var(--color-background);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      min-height: 100vh;
+      min-block-size: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: var(--spacing-md);
     }
 
     .container {
       width: 100%;
-      max-width: 400px;
+      max-width: min(90%, 400px);
     }
 
-    .qr-code {
-      background-color: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .qr-code:hover {
-      transform: translateY(-5px);
+    .qr-card {
+      background-color: var(--color-white);
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-lg);
     }
 
     .text-content {
-      margin-bottom: 25px;
+      margin-block-end: var(--spacing-lg);
     }
 
     .text-content h1 {
-      color: #1a1a1a;
-      font-size: 24px;
+      color: var(--color-text);
+      font-size: var(--font-size-large);
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-block-end: var(--spacing-sm);
       text-align: center;
     }
 
     .text-content p {
-      color: #666;
-      font-size: 16px;
+      color: var(--color-text-light);
+      font-size: var(--font-size-base);
       line-height: 1.5;
       text-align: center;
     }
 
     .input-group {
-      margin-bottom: 25px;
+      margin-block-end: var(--spacing-lg);
     }
 
     .input-group input {
       width: 100%;
-      padding: 15px;
-      border: 2px solid #e1e1e1;
-      border-radius: 12px;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      background-color: #f8f9fa;
+      padding: var(--spacing-md);
+      border: 2px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      font-size: var(--font-size-base);
+      background-color: var(--color-input-bg);
     }
 
     .input-group input:focus {
       outline: none;
-      border-color: #4a90e2;
-      background-color: white;
+      border-color: var(--color-primary);
+      background-color: var(--color-white);
       box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
     }
 
     .button-group {
       display: flex;
-      gap: 12px;
-      margin-bottom: 25px;
+      gap: var(--spacing-sm);
+      margin-block-end: var(--spacing-lg);
     }
 
-    button {
+    .button {
       flex: 1;
-      padding: 15px;
+      padding: var(--spacing-md);
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
+      border-radius: var(--border-radius-md);
+      font-size: var(--font-size-base);
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
-    button:first-child {
-      background-color: #4a90e2;
-      color: white;
+    .button--primary {
+      background-color: var(--color-primary);
+      color: var(--color-white);
     }
 
-    button:last-child {
-      background-color: #f8f9fa;
-      color: #4a90e2;
-      border: 2px solid #4a90e2;
+    .button--secondary {
+      background-color: var(--color-input-bg);
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
     }
 
-    button:hover {
+    .button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-md);
     }
 
-    button:first-child:hover {
-      background-color: #357abd;
+    .button--primary:hover {
+      background-color: var(--color-primary-dark);
     }
 
-    button:last-child:hover {
-      background-color: #f0f7ff;
+    .button--secondary:hover {
+      background-color: var(--color-white);
     }
 
-    #qr-code {
+    .qr-container {
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      padding: 20px;
-      background-color: #f8f9fa;
-      border-radius: 12px;
+      padding: var(--spacing-md);
+      background-color: var(--color-input-bg);
+      border-radius: var(--border-radius-md);
     }
 
-    #qr-code canvas {
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    .qr-container canvas {
+      border-radius: var(--border-radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 10px;
-      }
-
-      .qr-code {
-        padding: 20px;
-      }
-
-      .text-content h1 {
-        font-size: 20px;
-      }
-
-      .text-content p {
-        font-size: 14px;
-      }
-
-      button {
-        padding: 12px;
-        font-size: 14px;
+      .qr-card {
+        padding: var(--spacing-md);
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="qr-code">
+    <div class="qr-card">
       <div class="text-content">
         <h1>QR Code Generator</h1>
         <p>Создайте QR-код для любого текста или ссылки</p>
       </div>
       <div class="input-group">
-        <input type="text" id="qr-text" placeholder="Введите текст или URL">
+        <input type="text" id="qr-text" placeholder="Введите текст или URL" aria-label="Текст для QR-кода">
       </div>
       <div class="button-group">
-        <button onclick="generateQR()">Сгенерировать</button>
-        <button onclick="downloadQR()">Скачать</button>
+        <button class="button button--primary" onclick="generateQR()">Сгенерировать</button>
+        <button class="button button--secondary" onclick="downloadQR()">Скачать</button>
       </div>
-      <div id="qr-code"></div>
+      <div class="qr-container" id="qr-code" role="img" aria-label="Сгенерированный QR-код"></div>
     </div>
   </div>
   <script src="script.js"></script>
